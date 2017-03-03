@@ -1,2 +1,8 @@
 node_modules/
 dist/
+.idea/
+.idea/jsLibraryMappings.xml
+
+.idea/libraries/vue_keyframe_animation_node_modules.xml
+
+.idea/vcs.xml

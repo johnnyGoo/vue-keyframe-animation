@@ -120,7 +120,7 @@
 <body>
 
 
-<vue-keyframe-animation @click="move(movies[0],1)" time="1s" :keyframes="[{value:0,css:{x:0,rotate:0}},{value:'0.5',css:{x:0,rotate:-50}},{value:1,css:{x:100,rotate:100}}]"
+<vue-keyframe-animation @click="move(movies[0],1)" time="1s" :keyframes="[{value:0,css:{x:0,rotate:0}},{value:'0.5',css:{x:0,rotate:-50}},{value:2,css:{x:100,rotate:100}}]"
                         :current.sync="movies[0].current" style="background-color:#000000;width: 100px;height: 100px">
 </vue-keyframe-animation>
 <div  @click="move(movies[0],-1)" >back</div>
@@ -138,7 +138,7 @@
             VueKeyframeAnimation: VueKeyframeAnimation
         },
         data: {
-            page: 1, show: false, movies: [{current: 0.5}]
+            page: 1, show: false, movies: [{current: 0.1}]
         },
         methods: {
             move: function (movie,p) {

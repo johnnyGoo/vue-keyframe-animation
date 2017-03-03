@@ -22,8 +22,6 @@
     var Smart = window.Smart;
     var Css = Smart.Css;
     var _ = Smart._;
-
-
     function getCurrentObj(from, to, val) {
         var obj = {value: val, css: {}};
         var percent = (val - from.value) / (to.value - from.value);
@@ -54,6 +52,10 @@
             time: {
                 type: String,
                 default: '0.1s'
+            },
+            active:{
+                type: Boolean,
+                default:true
             }
         },
         data: function () {
@@ -70,6 +72,11 @@
                         to = v;
                     }
                 });
+                if(val<=this.keyframes[0].value){
+                    to = this.keyframes[0];
+                }else if(val>=this.keyframes[this.keyframes.length-1].value){
+                    to = this.keyframes[this.keyframes.length-1];
+                }
                 if (!to) {
                     for (var i = 0; i < this.keyframes.length; i++) {
                         var key = this.keyframes[i];
@@ -78,12 +85,11 @@
                             v1 = this.keyframes[i - 1];
                             v2 = key;
                             to = getCurrentObj(v1, v2, val);
-
-
                             break;
                         }
                     }
                 }
+
 
                 Css.smartCss(this.$el, to.css);
             }
@@ -91,15 +97,17 @@
 
         watch: {
             current: function (val, oldVal) {
-
-                if (val < 0) {
-                    this.current = 0;
+                if(!this.active){
                     return;
                 }
-                if (val > 1) {
-                    this.current = 1;
-                    return;
-                }
+//                if (val < 0) {
+//                    this.current = 0;
+//                    return;
+//                }
+//                if (val > 1) {
+//                    this.current = 1;
+//                    return;
+//                }
                 this.updateFrame(val);
 
             }
